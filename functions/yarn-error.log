@@ -1,0 +1,60 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Ayush\scoop\apps\yarn\current\Yarn\bin\yarn.js add mongoose-unique-validator
+
+PATH: 
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;%NVM_HOME%;%NVM_SYMLINK%;C:\Users\Ayush\scoop\apps\yarn\current\Yarn\bin;C:\Users\Ayush\scoop\apps\yarn\current\global\node_modules\.bin;bin;C:\Users\Ayush\scoop\shims;C:\Users\Ayush\AppData\Local\Microsoft\WindowsApps;C:\Users\Ayush\AppData\Local\Microsoft\WindowsApps;C:\Users\Ayush\AppData\Roaming\nvm;C:\Program Files\nodejs
+
+Yarn version: 
+  1.22.1
+
+Node version: 
+  12.0.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: read ECONNRESET
+      at TLSWrap.onStreamRead (internal/stream_base_commons.js:183:27)
+
+npm manifest: 
+  {
+    "name": "",
+    "version": "",
+    "scripts": {
+      "build": "tsc",
+      "build:production": "npm run prestart && npm prune --production",
+      "watch": "tsc --w",
+      "prestart": "npm run build && func extensions install",
+      "start:host": "func start",
+      "start": "npm-run-all --parallel start:host watch",
+      "test": "echo \"No tests yet...\""
+    },
+    "description": "",
+    "devDependencies": {
+      "@azure/functions": "^1.2.0",
+      "npm-run-all": "^4.1.5",
+      "typescript": "^3.3.3"
+    },
+    "dependencies": {
+      "@types/bluebird": "^3.5.30",
+      "@types/dotenv": "^8.2.0",
+      "@types/node": "^13.11.1",
+      "@types/redis": "^2.8.17",
+      "@types/shortid": "0.0.29",
+      "@types/valid-url": "^1.0.3",
+      "azure-ad-verify-token": "^1.1.0",
+      "bluebird": "^3.7.2",
+      "dotenv": "^8.2.0",
+      "mongoose": "^5.9.9",
+      "redis": "^3.0.2",
+      "shortid": "^2.2.15",
+      "valid-url": "^1.0.9"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
