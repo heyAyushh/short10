@@ -12,6 +12,7 @@
     "react-dom": "^16.13.1",
     "react-confetti": "^5.0.1",
     "react-scripts": "3.4.1",
+    "styled-components":"5.1.0",
     "typescript":"3.8.3",
     "react-use": "^14.1.1",
     "url-exists-deep": "^2.0.6",

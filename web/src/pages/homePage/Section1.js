@@ -82,6 +82,10 @@ export default () => {
 				/* 			setGivenName(decoded.given_name); */
 
 				console.log('Ping Successful');
+			})
+			.catch((err) => {
+				console.log(err);
+				toast("Error, Check later.");
 			});
 	});
 
@@ -119,7 +123,7 @@ export default () => {
 				setisProcessing(false);
 				toast('URL Generated', 'success');
 				setgeneratedNewUrl(res.data.shortenedUrl);
-				console.log(res.data)
+				console.log(res.data);
 			})
 			.catch((err) => {
 				setisResult(false);
@@ -181,7 +185,7 @@ export default () => {
 									styles={{ root: { height: 60, width: 60 } }}
 									iconProps={Copy}
 									onClick={() => {
-										setClipboard(process.env.REACT_APP_BACKEND_URL+generatedNewUrl);
+										setClipboard(process.env.REACT_APP_BACKEND_URL + generatedNewUrl);
 									}}
 								/>
 							</TooltipHost>
