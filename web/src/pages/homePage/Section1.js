@@ -125,7 +125,7 @@ export default () => {
 					setgeneratedNewUrl(res.data.shortenedUrl);
 				})
 				.catch((err) => {
-/* 					if (err.name == 'TokenExpiredError') {
+					/* 					if (err.name == 'TokenExpiredError') {
 						axios
 							.get(process.env.REACT_APP_WEBSITE + '/.auth/refresh')
 							.then((res) => {
@@ -193,7 +193,13 @@ export default () => {
 								<IconButton
 									iconProps={qrCode}
 									styles={{ root: { height: 60, width: 60 } }}
-									href={'https://qrfn.azurewebsites.net/api/qrfn?text="' + generatedNewUrl + '"'}
+									href={
+										'https://qrfn.azurewebsites.net/api/qrfn?text="' +
+										process.env.REACT_APP_BACKEND_URL +
+										'/' +
+										generatedNewUrl +
+										'"'
+									}
 								/>
 							</TooltipHost>
 							<TooltipHost content="Copy to Clipboard">
