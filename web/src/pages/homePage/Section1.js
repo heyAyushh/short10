@@ -54,7 +54,7 @@ export default () => {
 		'Hold a Second, Spongebob calling me 📲',
 		'Sending virtual Hugs 🤗'
 	];
-	const [ generatedNewUrl, setgeneratedNewUrl ] = useState('bymsp.com');
+	const [ generatedNewUrl, setgeneratedNewUrl ] = useState(process.env.REACT_APP_BACKEND_URL);
 	const { width, height } = useWindowSize();
 	const [ clipboard, setClipboard ] = useClippy();
 	const [ givenName, setGivenName ] = useState();
@@ -68,8 +68,6 @@ export default () => {
 		});
 
 	useEffect(() => {
-		//setValue1(clipboard);
-
 		axios
 			.get(process.env.REACT_APP_WEBSITE + '/.auth/me')
 			.then((res) => {
@@ -110,25 +108,43 @@ export default () => {
 		// do not forget to bind getData in constructor
 		_nextStep();
 
-		axios
-			.post(
-				process.env.REACT_APP_BACKEND_URL + '/api/links?code=' + process.env.REACT_APP_FUNCTION_KEY,
-				{
-					url: state.value1,
-					shortenedUrl: state.value2
-				},
-				{ headers: { 'x-ms-token-aad-id-token': token } }
-			)
-			.then((res) => {
-				setisResult(true);
-				setisProcessing(false);
-				toast('URL Generated', 'success');
-				setgeneratedNewUrl(res.data.shortenedUrl);
-			})
-			.catch((err) => {
-				setisResult(false);
-				setisStarting(true);
-			});
+		function createURL() {
+			axios
+				.post(
+					process.env.REACT_APP_BACKEND_URL + '/api/links?code=' + process.env.REACT_APP_FUNCTION_KEY,
+					{
+						url: state.value1,
+						shortenedUrl: state.value2
+					},
+					{ headers: { 'x-ms-token-aad-id-token': token } }
+				)
+				.then((res) => {
+					setisResult(true);
+					setisProcessing(false);
+					toast('URL Generated', 'success');
+					setgeneratedNewUrl(res.data.shortenedUrl);
+				})
+				.catch((err) => {
+/* 					if (err.name == 'TokenExpiredError') {
+						axios
+							.get(process.env.REACT_APP_WEBSITE + '/.auth/refresh')
+							.then((res) => {
+								setToken(res.data[0]['id_token']);
+
+							})
+							.catch((err) => {
+								console.log(err);
+								toast('Error in Auth token, Check later.');
+							});
+					} */
+
+					console.log(err);
+					setisResult(false);
+					setisStarting(true);
+				});
+		}
+
+		createURL();
 	}
 
 	const Content = () => {
@@ -185,7 +201,7 @@ export default () => {
 									styles={{ root: { height: 60, width: 60 } }}
 									iconProps={Copy}
 									onClick={() => {
-										setClipboard(process.env.REACT_APP_BACKEND_URL +'/'+ generatedNewUrl);
+										setClipboard(process.env.REACT_APP_BACKEND_URL + '/' + generatedNewUrl);
 									}}
 								/>
 							</TooltipHost>
@@ -209,7 +225,7 @@ export default () => {
 
 	return (
 		<Box>
-			<h1>Hello {givenName ? ', ' + givenName : ''} 👋</h1>
+			<h1>Hello{givenName ? ', ' + givenName : ''} 👋</h1>
 
 			<div>
 				<Card shadow>

@@ -60,7 +60,8 @@ export class Inputs extends React.Component<IProps, ITextFieldControlledExampleS
 				<TextField
 					label="Custom Url"
 					key={'customUrl'}
-          			placeholder="Custom link? Your choice"
+					placeholder="Custom link? Your choice"
+					autoFocus={true}
 					prefix="https://bymsp.com/"
 					value={this.state.value2}
 					onChange={this._onChange2}
@@ -68,7 +69,7 @@ export class Inputs extends React.Component<IProps, ITextFieldControlledExampleS
 				/>
 
 				<Stack horizontal horizontalAlign="end">
-					<CompoundButton primary iconProps={addIcon} secondaryText="Let's have your link generated" onClick={this.demoMethod}>
+					<CompoundButton primary iconProps={addIcon} secondaryText="Let's have your link generated" onClick={this.demoMethod} autoFocus={true}>
 						Short10
 					</CompoundButton>
 				</Stack>
