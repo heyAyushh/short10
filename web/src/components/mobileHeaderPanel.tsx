@@ -79,7 +79,7 @@ export const MobileHeaderPanel: React.FunctionComponent = (props: any) => {
 				<span style={itemStyles}>
 					<Stack verticalAlign="center" verticalFill={true}>
 						<span style={itemStyles}>
-							<ActionButton iconProps={logOut} allowDisabledFocus>
+							<ActionButton iconProps={logOut} allowDisabledFocus href={process.env.REACT_APP_SIGN_OUT_URL}>
 								Sign Out
 							</ActionButton>
 						</span>

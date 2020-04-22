@@ -8,7 +8,7 @@
       "methods": [
         "get"
       ],
-      "route": "redirect/{redirect}"
+      "route": "redirect/{redirect:alpha}"
     },
     {
       "type": "http",

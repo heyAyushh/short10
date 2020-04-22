@@ -25,8 +25,12 @@ export class Inputs extends React.Component<IProps, ITextFieldControlledExampleS
 
 
   fetchClipBoard(){
-    navigator.clipboard.readText().then(
-      clipText => this.setState({ value1: clipText }));
+
+	if(navigator.clipboard){
+		  
+		navigator.clipboard.readText().then(
+			clipText => this.setState({ value1: clipText })).catch((err)=>console.log(err))}
+
   }
 
   componentDidMount(){
@@ -34,7 +38,6 @@ export class Inputs extends React.Component<IProps, ITextFieldControlledExampleS
   }
 
   demoMethod(){
-    console.log(this.props);
     //@ts-ignore
     this.props.sendData(this.state);
   }
@@ -58,7 +61,6 @@ export class Inputs extends React.Component<IProps, ITextFieldControlledExampleS
 					label="Custom Url"
 					key={'customUrl'}
           			placeholder="Custom link? Your choice"
-          			autoFocus={true}
 					prefix="https://bymsp.com/"
 					value={this.state.value2}
 					onChange={this._onChange2}

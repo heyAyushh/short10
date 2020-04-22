@@ -7,8 +7,7 @@ import { ActionButton, IIconProps } from 'office-ui-fabric-react';
 import FeedbackDialog from './feedbackDialog';
 /* import {ReportPanel} from './reportPanel.tsx'; */
 import { useMedia } from 'react-use';
-import {MobileHeaderPanel} from './mobileHeaderPanel';
-import { ThemeProvider } from 'office-ui-fabric-react/lib/Foundation';
+import { MobileHeaderPanel } from './mobileHeaderPanel';
 
 const report = { iconName: 'ReportHacked' };
 const viewAll = { iconName: 'ViewAll' };
@@ -53,7 +52,7 @@ export default (props) => {
 
 	// Header to be rendered on Laptop or desktop or tablets
 
-	const BigHeader = () => {
+	const BigHeader = (props) => {
 		return (
 			<Stack tokens={stackTokens}>
 				<Stack horizontal horizontalAlign="space-around">
@@ -86,7 +85,7 @@ export default (props) => {
 					<span style={itemStyles}>
 						<Stack horizontal horizontalAlign="end">
 							<span style={itemStyles}>
-								<ActionButton iconProps={logOut} allowDisabledFocus>
+								<ActionButton iconProps={logOut} allowDisabledFocus href={process.env.REACT_APP_SIGN_OUT_URL}>
 									Sign Out
 								</ActionButton>
 							</span>
@@ -99,17 +98,13 @@ export default (props) => {
 
 	// Header for Mobiles
 
-	const SmolHeader = () => {
+	const SmolHeader = (props) => {
 		return (
 			<Stack tokens={stackTokens} horizontalAlign="start" verticalAlign="center">
-				<MobileHeaderPanel theme={props.theme}/>
+				<MobileHeaderPanel theme={props.theme} />
 			</Stack>
 		);
 	};
 
-	return (
-		<Wrapper>
-			{isWide ? <BigHeader /> : <SmolHeader />}
-		</Wrapper>
-	);
+	return <Wrapper>{isWide ? <BigHeader theme={props.theme} /> : <SmolHeader theme={props.theme} />}</Wrapper>;
 };

@@ -15,7 +15,8 @@ bluebird.promisifyAll(redis.Multi.prototype);
 const httpTrigger: AzureFunction = async function(context: Context, req: HttpRequest): Promise<void> {
     context.log('HTTP trigger function processed a request.');
     // route passed in parameters, binding so that we can https://url/api/redirect/{redirect}
-    const redirect = req.params.redirect;
+    const redirect = context.bindingData.redirect || req.params.redirect;
+    console.log('redirect - ', redirect)
     
 	// Redirect after loading a link with hash
 	// find in redis first
@@ -48,7 +49,7 @@ const httpTrigger: AzureFunction = async function(context: Context, req: HttpReq
     if (!url) {
         // Fetched from DB
         const data = await Link.find({ shortenedUrl: redirect });
-        if(data){
+        if(data.length){
             url = data[0].url;
 
             // set in redis and add 2 months TTL 
