@@ -7,7 +7,7 @@
     "@zeit-ui/react":"0.0.1-beta.31",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "jsonwebtoken":"8.5.1",
     "react": "^16.13.1",
     "office-ui-fabric-react": "^7.106.0",
